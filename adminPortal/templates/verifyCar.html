@@ -1,0 +1,380 @@
+{% extends "index.html" %}
+    {% load static %}
+{% block sidebar %}
+<style>
+/* popup css */
+img.img-cus {
+    width: 100%;
+	height: 400px;
+     vertical-align: ce;
+    clear: left;
+    vertical-align: center;
+}
+button.btn.btn-default.approve-btn {
+    background: #fff;
+    border: 2px solid #1ab394;
+    color: #1ab394;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+}
+button.btn.btn-default.approve-btn:hover {
+    background: #1ab394;
+    color: #fff;
+}
+
+button.btn.btn-default.decline-btn {
+   background: #fff;
+    border: 2px solid #1ab394;
+    color: #1ab394;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+}
+button.btn.btn-default.decline-btn:hover {
+	 background: #1ab394;
+    color: #fff;
+	}
+.model-width{
+width:700px;
+}
+.previous-btn {
+    position: relative;
+    float: left;
+    top: -286px;
+    border: 0;
+    background: transparent;
+    font-size: 25px;
+    color: #1ab394;
+	line-height:0;
+}
+.next-btn {
+    float: right;
+    position: relative;
+    top: -286px;
+    border: 0;
+    background: transparent;
+    font-size: 25px;
+    color: #1ab394;
+	line-height:0;
+    }
+
+	img.mySlides {
+	width:100%;
+	height:280px;
+	}
+	.model-width-car {
+    width: 1200px;
+    position: relative;
+    left: -260px;
+}
+.car-details{
+float:left;
+padding:10px 0;
+}
+.product-imitation img {
+    width: 80%;
+    padding: 30px;
+    height: auto;
+}
+@media only screen and (max-width: 600px) {
+.model-width-car {
+    width: 100%;
+	    position: relative;
+    left: 0;
+	}
+	.next-btn {
+        position: relative;
+    top: -135px;
+	}
+	.previous-btn {
+    position: relative;
+        top: -135px;
+		}
+		.car-details {
+      margin-left: 22px;
+}
+.approve-btn{
+margin-bottom:15px;
+}
+}
+/* End of popup css */
+</style>
+   <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+              function app(id) {
+
+                 $.ajax({
+                        url : '{{ 'CarVer' }}',
+                        data : {
+                            get : "approve",
+                            id:id
+                        },
+                        success : function(responseText) {
+                            location.reload();
+                        }
+                 });
+              }
+                function des(id) {
+                 $.ajax({
+                        url : '{{ 'CarVer' }}',
+                        data : {
+                            get : "decline",
+                            id:id
+                        },
+                        success : function(responseText) {
+                            location.reload();
+                        }
+                 });
+              }
+
+    </script>
+		 <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="img-circle" src="{% static 'img/profile_small.jpg' %}" />
+                             </span>
+                             </span>
+                             </span>
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ request.session.name }}</strong>
+                             </span> <span class="text-muted text-xs block">Admin <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="logout">Logout</a></li>
+                            </ul>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                 <li><a href="admin.login"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> </a></li>
+                <li class="active">
+                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Task</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="verfiyID">Verify ID</a></li>
+                            <li class="active"><a href="verfiyCar">Verfiy Car</a></li>
+                            <li><a href="Promotion">Promotion</a></li>
+                     </ul>
+                </li>
+                 <li>
+                  <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Details</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="users">Users Details</a></li>
+                            <li><a href="groupall">Group Details</a></li>
+                     </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    {% endblock %}
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Verify Car</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="admin.login">Home</a>
+            </li>
+            <li class="active">
+                <strong>Verified : {{ verified }}</strong>
+            </li>
+            <li class="active">
+                <strong>Not Verified : {{ notverified }}</strong>
+            </li>
+            <li class="active">
+                <strong>Rejected : {{ rejected }}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        {% for value in getlist %}
+
+        <div class="col-md-3">
+            <div class="ibox">
+                <div class="ibox-content product-box">
+
+                    <div class="product-imitation">
+                        <img alt="image" src="{% static 'img/verfiyCar.png' %}" />
+
+                    </div>
+                    <div class="product-desc">
+                        <span class="product-price">
+                              {{ value.status }}
+                              </span>
+                        <small class="text-muted product-name">{{ value.rider_reg_name }}</small>
+
+                        <div class="small m-t-xs product-name">
+                            <h5>{{ value.rider_phoneno }}</h5>
+                            <h5>{{ value.rider_age }}</h5>
+                        </div>
+                        <div class="m-t text-righ">
+                            <a href="#" class="btn btn-xs btn-outline btn-primary" data-toggle="modal" data-target="#{{ value.car_id }}">View Document <i class="fa fa-long-arrow-right"></i> </a>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="{{ value.car_id }}" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content model-width-car">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Modal Header</h4>
+                                    </div>
+                                    <div class="modal-body" style="padding:0;">
+                                        <div class="row">
+                                           						
+											 <div class="col-md-8" style="float:left;">
+
+                                              <div class="w3-content w3-display-container">
+
+{% comment %}<div class="w3-display-container mySlides">
+  <img src="
+
+{% if value.rider_license_url is None %}
+                {{ '/static/img/NOProf.png' }}
+            {% else %}
+                {{ value.rider_license_url }}
+            {% endif %}
+
+" style="width:100%">
+  <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
+     <div style="position:relative;">
+	 <span class="product-price">
+                License
+                  </span>
+				  </div>
+  </div>
+</div>{% endcomment %}
+{% comment %}	  <div class="w3-display-container mySlides">
+  <img src="
+
+          {% if value.rider_adhar_url is None %}
+                {{ '/static/img/NOProf.png' }}
+            {% else %}
+                {{ value.value.rider_adhar_url }}
+            {% endif %}
+         " style="width:100%">
+  <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+     <div style="position:relative;">
+	<span class="product-price">
+                 Adhar Card
+                  </span>
+				  </div>
+  </div>
+</div>{% endcomment %}
+
+<div class="w3-display-container mySlides">
+  <img src="{% if value.car_rc_url is None %}
+                {{ '/static/img/NOProf.png' }}
+            {% else %}
+                {{ value.car_rc_url }}
+            {% endif %}
+
+    " style="width:100%">
+  <div class="w3-display-bottomright w3-large w3-container w3-padding-16 w3-black">
+		 <div style="position:relative;">
+	<span class="product-price">
+                Car RC
+                  </span>
+				  </div>
+  </div>
+</div>
+
+{% comment %}<div class="w3-display-container mySlides">
+  <img src="
+          {% if value.car_insurance_url is None %}
+                {{ '/static/img/NOProf.png' }}
+            {% else %}
+                {{ value.value.car_insurance_url }}
+            {% endif %}
+          " style="width:100%">
+  <div class="w3-display-topleft w3-large w3-container w3-padding-16 w3-black">
+       <div style="position:relative;">
+	   <span class="product-price">
+                Insurance
+                  </span></div>
+  </div>
+</div>{% endcomment %}
+
+
+{% comment %}<button class="w3-button w3-display-left w3-black previous-btn" onclick="plusDivs(-1)">&#10094;</button>
+<button class="w3-button w3-display-right w3-black next-btn" onclick="plusDivs(1)">&#10095;</button>{% endcomment %}
+
+</div>
+                                            </div>
+                                            <div class="col-md-4 car-details">
+                                                <p>
+                                                    <label> Name: </label> <span>  {{ value.rider_reg_name }}</span> </p>
+                                                <p>
+                                                    <label> Phone No: </label> <span> {{ value.rider_phoneno }}</span> </p>
+                                                <p>
+                                                    <label> Age: </label> <span> {{ value.rider_age }}</span> </p>
+                                                <p>
+                                                    <label> Car Type: </label> <span> {{ value.rider_carmodel }}</span> </p>
+                                                <p>
+                                                    <label> Car Type: </label> <span> {{ value.car_color }}</span> </p>
+                                                <p>
+                                                    <label> Car No: </label> <span> {{ value.rider_carno}}</span> </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3">
+                                            <button type="button" onclick="app('{{ value.car_id }}')" class="btn btn-default approve-btn">Approve</button>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="button" onclick="des('{{ value.car_id }}')" class="btn btn-default decline-btn" data-dismiss="modal">Decline</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+<script>
+//var slideIndex = 1;
+//showDivs(slideIndex);
+
+{% comment %}function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  console.log("n:"+n)
+  var x = document.getElementsByClassName("mySlides");
+  console.log("x.length:"+x.length)
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}{% endcomment %}
+</script>
+
+{% endblock %}

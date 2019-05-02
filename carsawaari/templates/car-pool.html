@@ -1,0 +1,399 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Document Title -->
+     <title>CarSawaari</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png'  %}">
+
+    <!-- CSS Files -->
+    <!--==== Google Fonts ====-->
+    {% include "header.html" %}
+    {% include "jsfiles.html" %}
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preLoader">
+        <div class="preload-inner">
+            <div class="sk-cube-grid">
+                <div class="sk-cube sk-cube1"></div>
+                <div class="sk-cube sk-cube2"></div>
+                <div class="sk-cube sk-cube3"></div>
+                <div class="sk-cube sk-cube4"></div>
+                <div class="sk-cube sk-cube5"></div>
+                <div class="sk-cube sk-cube6"></div>
+                <div class="sk-cube sk-cube7"></div>
+                <div class="sk-cube sk-cube8"></div>
+                <div class="sk-cube sk-cube9"></div>
+            </div>
+        </div>
+    </div>
+    <!-- End Of Preloader -->
+
+    <!-- Main header -->
+    <header class="header">
+        <!-- Start Header Navbar-->
+        <div class="main-header inner-header">
+            <div class="main-menu-wrap">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-6">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="main.html">
+                                    <img class="main-logo" src="{% static 'assets/img/logo2.png' %}" data-rjs="2" alt="jironis">
+                                    <img class="sticky-logo" src="{% static 'assets/img/logo.png' %}" data-rjs="2" alt="jironis">
+                                </a>
+                            </div>
+                            <!-- End of Logo -->
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-4 col-6 menu-button">
+                            <div class="menu--inner-area clearfix">
+                                <div class="menu-wraper">
+                                      <nav>
+                                        <!-- Header-menu -->
+                                        <div class="header-menu dosis">
+                                            <ul>
+                                                <li><a href="{{ '/' }}">Home</a>
+                                                 
+                                                </li>
+                                                <li><a href="{{ '/' }}#features">Features</a></li>
+                                                <li><a href="{{ '/' }}#app">App Screens</a></li>
+                                                
+                                               
+                                            </ul>
+                                        </div>
+                                        <!-- End of Header-menu -->
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 d-md-block d-none">
+                            <div class="urgent-call text-right">
+                                <a href="#" class="btn">Get CarSawaari</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Navbar-->
+    </header>
+    <!-- End of Main header -->
+
+    <!-- page title -->
+    <div class="page-title-wrap" data-bg-img="{% static 'assets/img/video-bg.jpg'%}">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- page title content -->
+                    <div class="page-title-content text-center">
+                        <ul class="mb-0 list-unstyle nav">
+                            <li><a href="main.html">Home</a></li>
+                            <li><a href="#">Carpool</a></li>
+                        </ul>
+                        <h1 class="h2">Carpool Listing</h1>
+                    </div><!-- /.End of page title content -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div>
+    <!--/.End of page title -->
+
+    <!-- blog list area -->
+    <section class="pt-120 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+
+                {% if countgrp is not 0 %}
+                    {% for group in grouplist %}
+                    <div class="row carpool_list">
+                      <div class="col-md-6"><h2>{{ group.group_name }}</h2>
+                      <p class="route">{{ group.origin_name }} <b>To</b> {{ group.dest_name }}</p>
+                      </div>
+                      <div class="col-md-3">{{ group.group_member }} {{ group.group_status }}</div>
+                      <div class="col-md-3"><a data-toggle="modal" data-target="#amit{{ forloop.counter }}" href="#" class="btn">Join</a></div>
+
+                        <div id="amit{{ forloop.counter }}" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+
+                              <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <div class="custom_bdr">
+
+                               <h3>Enter your details</h3>
+
+                               {% comment %}<form action="">{% endcomment %}
+                                                  <div class="form-group">
+                                                     <select class="form-control" id="country{{ forloop.counter }}">
+                                                          <option value="India">India</option>
+                                                          <option value="Nigeria">Nigeria</option>
+                                                          <option value="Other">Other</option>
+                                                       </select>
+                                                  </div>
+
+                                                  <div class="form-group" id="mobile{{ forloop.counter }}" >
+                                                    <input type="text" class="form-control" placeholder="Enter Phone Number"  name="mobileno" id="mobileno{{ forloop.counter }}" required>
+                                                  </div>
+                                                  <div class="form-group" id="email{{ forloop.counter }}" >
+                                                    <input type="text" class="form-control" placeholder="Enter Email ID"  name="emailid" id="emailid{{ forloop.counter }}" required>
+                                                  </div>
+
+
+
+
+
+                                                  <button type="button" class="btn" onclick="joingroup('{{ group.group_id }}',{{ forloop.counter }})">Submit</button>
+                                                {% comment %}</form>{% endcomment %}
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+
+
+                    </div>
+                    {% endfor %}
+
+                {% else %}
+                    <div> No Group found...!</div>
+                {% endif %}
+                    {% if grouplist.has_previous %}
+                       <a class="infinite-more-link" href="?from={{ fromsrc }}&dest={{ dest }}&page={{ grouplist.previous_page_number }}">&laquo;Previous</a>
+                   {% endif %}
+                    &emsp;
+                   {% if grouplist.has_next %}
+                         <a class="infinite-more-link" href="?from={{ fromsrc }}&dest={{ dest }}&page={{ grouplist.next_page_number }}">More&raquo;</a>
+                   {% endif %}
+                    <!-- blog pagination -->
+                   {% comment %} <ul class="theme-pagination pt-sans pagination align-items-center">
+                        <li class=""><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>{% endcomment %}
+                    <!--End of blog pagination -->
+                </div>
+
+                <div class="col-lg-4">
+                    <aside>
+                        <!-- single sidebar widget -->
+
+                        <!--End of  single sidebar widget -->
+
+
+                        <!-- single sidebar widget -->
+                        <div class="single-sidebar-widget mb-30">
+                            <div class="sidebar-title" style="text-align: center;">
+                                <h5>Get App</h5>
+                            </div>
+
+                            <div class="sidebar-body categories-inner" style="text-align: center;">
+                                <ul>
+                                    <li><a href="#"><img src="{% static 'assets/img/blog/playstore.png' %}"/></a></li>
+                                    <li><a href="#"><img src="{% static 'assets/img/blog/ios.png' %}"/></a></li>
+                               
+                                </ul>
+                            </div>
+                        </div>
+                        <!--End of  single sidebar widget -->
+
+                      
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ENd of blog list area -->
+
+      <footer class="footer">
+        <div class="footerbg">
+        <img src="{% static 'assets/img/footer-bg.png' %}" alt="">
+        </div>
+        <div class="footer-top pt-120 pb-90">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <!-- footer widget -->
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="main.html"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
+                            </div>
+                            <p>Lorem ipsum dolor sit ame consy ect etur adipisc de elit. Quisque act raqum nunc no dolor sit de
+                                amet.</p>
+                            <!-- footer social area -->
+                            <div class="footer-social-area">
+                                <ul class="social-icons social-icons-light nav">
+                                    <li><a href="#" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- End of footer social area -->
+                        </div>
+                        <!--End of footer widget -->
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget">
+                            <!-- widget header -->
+                            <div class="widget-header">
+                                <h5>Our Address</h5>
+                            </div>
+                            <!-- widget header -->
+                            <div class="widget-body">
+                                <ul class="address-list">
+                                    <li>
+                                        <span><i class="fa  fa-phone-square"></i></span>
+                                        888 999 0000
+                                    </li>
+                                    <li>
+                                        <span><i class="fa  fa-envelope"></i></span>
+                                        needhelp@CarSawaari.com
+                                    </li>
+                                    <li>
+                                        <span><i class="fa  fa-map"></i></span>
+                                        855 road, broklyn street,
+                                        new york 600
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget">
+                            <!-- widget header -->
+                            <div class="widget-header">
+                                <h5>Extra Feature</h5>
+                            </div>
+                            <!-- widget header -->
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="extra-link">
+                                <div class="link-left">
+                                    <ul>
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">Our Team</a></li>
+                                        <li><a href="#">Features</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">How It Works</a></li>
+                                    </ul>
+                                </div>
+                                <div class="link-right">
+                                    <ul>
+                                        <li><a href="#">Help</a></li>
+                                        <li><a href="#">Support</a></li>
+                                        <li><a href="#">Clients</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget">
+                            <div class="widget-body">
+                                <div class="twetter-post-inner">
+                                    <div class="footer-post-details">
+                                        @Layerdrops Take your web design to new heights with jironix. <br><a href="http://yhdj58.tp8/JK">http://yhdj58.tp8/JK</a>
+                                    </div>
+                                    <div class="twetter-post">
+                                        <span><i class="fa fa-twitter"></i></span>
+                                        CarSawaari - Nov 23, 2018
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-text text-center">
+                <p>© copyright 2019 by carswaari.com</p>       
+            </div>
+        </div>
+        
+    </footer>
+    
+    <!-- back to top -->
+    <div class="back-to-top">
+        <a href="#"><i class="fa fa-chevron-up"></i></a>
+    </div>
+    <!-- back to top -->
+    
+    
+    <!-- JS Files -->
+    <!-- ==== JQuery 3.3.1 js file==== -->
+{% include "jsfiles.html" %}
+<script>
+
+
+    //var myModal = document.getElementById("myModal");
+   {% comment %} var email = document.getElementById("email");
+    var mobile = document.getElementById("mobile");{% endcomment %}
+
+    {% comment %}$("#country").change(function(){
+        //alert("change..."+$("#country").val())
+        if($("#country").val()=='91' || $("#country").val()=='234' ) {
+                      email.style.display = "none";
+                      mobile.style.display = "block";
+        }
+        else{
+            email.style.display = "block";
+            mobile.style.display = "none";
+        }
+    });{% endcomment %}
+    
+    function joingroup(groupid,id) {
+        //alert("id :: "+id)
+        //alert("$('#mobileno').val()"+$('#mobileno').val())
+        //alert("$('#emailid').val()"+$('#emailid').val())
+         $.ajax({
+                    type: "GET",
+                    cache:'false',
+
+                    url: '{{ 'joinpool' }}',
+                    data: { phone_no:$('#mobileno'+id).val(),group_id:groupid,country_code:$('#country'+id).val(),email_id:$('#emailid'+id).val()},
+                    //crossDomain: true,
+                    //dataType: 'jsonp',
+                    success:function(result){
+                        if(result=='1'||result=='2') {
+                            alert("Joined succussfully. Thank you")
+                        }
+                        //alert("result1:"+result)
+                        //$('#myModal').modal('toggle');
+                        location.reload()
+                    }
+                 });
+
+
+
+         }
+
+    
+</script>
+    
+    </body>
+    
+    </html>

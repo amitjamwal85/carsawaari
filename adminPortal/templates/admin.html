@@ -1,0 +1,98 @@
+{% extends "index.html" %}
+{% load static %}
+ {% block sidebar %}
+         <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="img-circle" src="{% static 'img/profile_small.jpg' %}" />
+                             </span>
+                             </span>
+                             </span>
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ request.session.name }}</strong>
+                             </span> <span class="text-muted text-xs block">Admin <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="logout">Logout</a></li>
+                            </ul>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li><a href="admin.login"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> </a></li>
+
+                <li>
+                  <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Tasks</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="verfiyID">Verify ID</a></li>
+                            <li><a href="verfiyCar">Verfiy Car</a></li>
+                            <li><a href="Promotion">Promotion</a></li>
+                     </ul>
+                </li>
+                 <li>
+                  <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Details</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="users">Users Details</a></li>
+                            <li><a href="groupall">Group Details</a></li>
+                     </ul>
+                </li>
+                <li>
+
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+ {% endblock %}
+{% block content %}
+<div class="wrapper wrapper-content animated fadeInRight">
+     <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Upcoming Rides</h5>
+                                <h1 class="no-margins">{{ upcoming }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Last week  Rides</h5>
+                                <h1 class="no-margins">{{ lastweek }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Total Rides Booked</h5>
+                                <h1 class="no-margins">{{ totalbook }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Total Rides Offered</h5>
+                                <h1 class="no-margins">{{ totalRide }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Total Users</h5>
+                                <h1 class="no-margins">{{ totalUsers }}</h1>
+                            </div>
+                        </div>
+                    </div>
+
+     </div>
+ </div>
+
+{% endblock %}

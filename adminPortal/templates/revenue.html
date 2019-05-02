@@ -1,0 +1,305 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Revenue Alert</title>
+    {% load static %}
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+.divf {
+	text-align: center;
+}
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display:none;
+}
+.loadingN {
+  position: fixed;
+  z-index: 999;
+
+  overflow: show;
+
+ background-color: #DFE2DB;
+
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+}
+</style>
+<body>
+	<div class="loadingN" style="border: 1px solid black: margin: 10px; padding: 13px;margin-left: 300px;">
+		<button type="button" class="btn btn-success test">Facebook</button>
+		<button type="button" class="btn btn-success devo">Glo Devo</button>
+		<button type="button" class="btn btn-success mcel">MCEL</button>
+		<button type="button" class="btn btn-success yc">GLO_YC_55440</button>
+		<button type="button" class="btn btn-success vas">Vas4af</button>
+
+
+	</div>
+	<br><br><br>
+	<div id="rev">
+
+	</div>
+	<div id="LoadingImage" class="loading">
+</div>
+</body>
+</html>
+<script>
+$(document).ready( function() {
+ $("#LoadingImage").show();
+	$.ajax({
+		url : '/trio',
+		data : {
+		    get : "1"
+
+		},
+		success : function(responseText) {
+			 $("#LoadingImage").hide();
+
+			$('#rev').html(responseText);
+		}
+	});
+
+	$('.fb').click( function(event) {
+		 $("#LoadingImage").show();
+	$.ajax({
+		url : '/trio',
+		data : {
+			get : "1"
+		},
+		success : function(responseText) {
+			 $("#LoadingImage").hide();
+
+			$('#rev').html(responseText);
+		}
+	});
+
+	});
+	$('.test').click( function(event) {
+		  $("#LoadingImage").show();
+
+		$.ajax({
+			url : '/trio',
+			data : {
+				get : "2"
+			},
+			success : function(responseText) {
+				 $("#LoadingImage").hide();
+				$('#rev').html(responseText);
+			}
+		});
+
+		});
+	$('.devo').click( function(event) {
+		  $("#LoadingImage").show();
+
+		$.ajax({
+			url : '/trio',
+			data : {
+				get : "3"
+			},
+			success : function(responseText) {
+				 $("#LoadingImage").hide();
+				$('#rev').html(responseText);
+			}
+		});
+
+		});
+	$('.mcel').click( function(event) {
+		  $("#LoadingImage").show();
+		$.ajax({
+			url : '/trio',
+			data : {
+				get : "4"
+			},
+			success : function(responseText) {
+				 $("#LoadingImage").hide();
+				$('#rev').html(responseText);
+			}
+		});
+
+		});
+	$('.yc').click( function(event) {
+		  $("#LoadingImage").show();
+
+		$.ajax({
+			url : '/trio',
+			data : {
+				get : "5"
+			},
+			success : function(responseText) {
+				 $("#LoadingImage").hide();
+				$('#rev').html(responseText);
+			}
+		});
+
+		});
+	$('.vas').click( function(event) {
+		  $("#LoadingImage").show();
+
+		$.ajax({
+			url : '/trio',
+			data : {
+				get : "6"
+			},
+			success : function(responseText) {
+				 $("#LoadingImage").hide();
+				$('#rev').html(responseText);
+			}
+		});
+
+		});
+	$('.vasAirtel').click( function(event) {
+		  $("#LoadingImage").show();
+
+			$.ajax({
+				url : '/trio',
+				data : {
+					get : "7"
+				},
+				success : function(responseText) {
+					 $("#LoadingImage").hide();
+					$('#rev').html(responseText);
+				}
+			});
+
+		});
+	$('.kaliAirtel').click( function(event) {
+		  $("#LoadingImage").show();
+
+			$.ajax({
+				url : '/trio',
+				data : {
+					get : "8"
+				},
+				success : function(responseText) {
+					 $("#LoadingImage").hide();
+					$('#rev').html(responseText);
+				}
+			});
+
+		});
+});
+
+</script>

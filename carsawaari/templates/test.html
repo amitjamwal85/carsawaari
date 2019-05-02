@@ -1,0 +1,54 @@
+{% load static %}
+<html lang = "en">
+   <head>
+      <meta charset = "utf-8">
+      <title>jQuery UI Autocomplete functionality</title>
+      <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+
+   </head>
+
+   <body>
+      <!-- HTML -->
+      <div class = "ui-widget">
+         <p>Type "a" or "s"</p>
+         {% comment %}<label for = "automplete-1">Tags: </label>{% endcomment %}
+         <input id = "automplete-1">
+      </div>
+   </body>
+
+ <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+      <!-- Javascript -->
+      <script>
+         $(function() {
+           {% comment %} var availableTutorials  =  [
+               "ActionScript",
+               "Bootstrap",
+               "C",
+               "C++",
+            ];{% endcomment %}
+
+            $.ajax({
+              url: "{% url 'getcity' %}",
+
+              dataType: 'json',
+              success: function (data) {
+                  list = data.list;
+                  //alert("list"+list)
+
+                  $( "#automplete-1" ).autocomplete({
+                       source: list
+                  });
+              }
+          });
+
+           {% comment %} $( "#automplete-1" ).autocomplete({
+               source: availableTutorials
+            });{% endcomment %}
+         });
+
+
+      </script>
+</html>
