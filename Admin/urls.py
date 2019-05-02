@@ -20,7 +20,5 @@ from django.conf.urls import url
 urlpatterns = [
     url('admin/', admin.site.urls, name='admin'),
     url(r'', include('carsawaari.urls')),
-    #path('', include('carsawaari.urls')),
-    #path('csadm/', include('adminPortal.urls')),
     url(r'adm/', include('adminPortal.urls')),
 ]
